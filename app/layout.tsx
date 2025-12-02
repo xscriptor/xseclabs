@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "X Sec Labs",
-  description: "X Sequrity Labs",
+  description: "Plataforma para registros de cyberseguridad",
 };
 
 export default function RootLayout({
