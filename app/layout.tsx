@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-
-
 export const metadata: Metadata = {
   title: "X Sec Labs",
   description: "X Sequrity Labs",
