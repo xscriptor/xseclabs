@@ -130,25 +130,24 @@ id, user_id, action, module, entity_id, created_at
 
 # **Native Translation (Next.js)**
 
-- Technology: i18n.
+- Technology: `next-intl` (App Router).
 
 ## Languages:
 
-- `es` (automatic), `en`.
+- `es` (default), `en`.
 
 ## Configuration
 
-```js
-const nextConfig = {
-  i18n: {
-    defaultLocale: 'es',
-    locales: ['es', 'en'],
-  },
-};
-module.exports = nextConfig;
-```
+The project uses `next-intl` with App Router and Middleware for localized route management.
 
-## Routes
+### Structure
 
-- `/` serves content in Spanish.
+- `messages/`: JSON files with translations (`es.json`, `en.json`).
+- `src/i18n/`: `next-intl` configuration (`request.ts`, `navigation.ts`).
+- `src/middleware.ts`: Middleware for redirection and locale detection.
+- `app/[locale]/`: Dynamic routes based on language.
+
+### Routes
+
+- `/es` (or `/` redirects to `/es` by default) serves content in Spanish.
 - `/en` serves content in English.
