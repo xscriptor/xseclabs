@@ -3,7 +3,7 @@
 ## Estructura general
 
 ```
- xseclabs-backend/
+Backed/ (en desarrollo htdocs)
 │
 ├── public/
 │     ├── index.php
