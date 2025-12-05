@@ -1,4 +1,4 @@
-import ModuleCard from "../components/ModuleCard";
+import ModuleCard from "./components/ModuleCard";
 
 export default function Home() {
   return (

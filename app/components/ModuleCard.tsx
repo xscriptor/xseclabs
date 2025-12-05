@@ -15,4 +15,3 @@ export default function ModuleCard({ href, title, description }: Props) {
     </Link>
   );
 }
-
