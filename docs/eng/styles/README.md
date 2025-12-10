@@ -1,4 +1,4 @@
-## **Global Styles (`src/app/globals.css`)**
+## **Global Styles (`app/globals.css`)**
 
 ### Overview
 - Imports Tailwind via `@import "tailwindcss"` for utilities and preflight.
@@ -76,5 +76,5 @@ Example:
 - `.muted`: color `var(--text-secondary)`.
 
 ### Notes
-- `globals.css` is imported in `src/app/layout.tsx`, so it applies across the app.
+- `globals.css` is imported in `app/layout.tsx`, so it applies across the app.
 - Static assets are served from `public`, hence the font is referenced as `"/fonts/AnonymousPro-Regular.woff2"`.

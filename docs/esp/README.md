@@ -21,16 +21,16 @@
     
 - Componentes reutilizables exportados entre proyectos
     
-- JSX/TSX
+- JSX
     
 - Layout modular orientado a paneles
     
 
 ## Comunicación con backend
 
-- Cliente central `lib/api.ts`
+- Cliente central `lib/api.js`
     
-- Fetch tipado
+- Fetch
     
 - Token enviado automáticamente desde capa de cliente
     
@@ -172,26 +172,26 @@ id, user_id, action, module, entity_id, created_at
 
 ---
 
-# **Traducción Nativa (Next.js)**
-revisa el orden de los directorios de la aplicación web y corr
-- Tecnología: `next-intl` (App Router).
+# **Traducción estática (subdirectorios)**
 
-## Lenguajes:
+- Enfoque: subdirectorios por idioma con páginas pre-renderizadas.
+
+## Lenguajes
 
 - `es` (por defecto), `en`.
 
 ## Configuración
 
-El proyecto utiliza `next-intl` con App Router y Middleware para la gestión de rutas localizadas.
+- Usar `app/page.jsx` para español y `app/en/page.jsx` para inglés.
+- Sin middleware ni librerías de i18n en tiempo de ejecución.
+- Las diferencias de contenido se gestionan directamente en cada ruta.
 
-### Estructura
+## Estructura
 
-- `messages/`: Archivos JSON con las traducciones (`es.json`, `en.json`).
-- `src/i18n/`: Configuración de `next-intl` (`request.ts`, `navigation.ts`).
-- `src/middleware.ts`: Middleware para redirección y detección de locale.
-- `app/[locale]/`: Rutas dinámicas basadas en el idioma.
+- `app/page.jsx` — contenido en español.
+- `app/en/page.jsx` — contenido en inglés.
 
-### Rutas
+## Rutas
 
-- `/es` (o `/` redirecciona a `/es` por defecto) sirve contenido en español.
+- `/` sirve contenido en español.
 - `/en` sirve contenido en inglés.

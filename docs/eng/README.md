@@ -13,13 +13,13 @@
 
 - Tailwind
 - Reusable components exported between projects
-- JSX/TSX
+- JSX
 - Modular dashboard-oriented layout
 
 ## Backend Communication
 
-- Central client `lib/api.ts`
-- Typed fetch
+- Central client `lib/api.js`
+- Fetch
 - Token automatically sent from client layer
 
 ## Route Protection
@@ -128,26 +128,26 @@ id, user_id, action, module, entity_id, created_at
 
 ---
 
-# **Native Translation (Next.js)**
+# **Static Translation (Subdirectories)**
 
-- Technology: `next-intl` (App Router).
+- Approach: per-language subdirectories with pre-rendered pages.
 
-## Languages:
+## Languages
 
 - `es` (default), `en`.
 
 ## Configuration
 
-The project uses `next-intl` with App Router and Middleware for localized route management.
+- Use `app/page.jsx` for Spanish and `app/en/page.jsx` for English.
+- No middleware or runtime i18n libraries.
+- Content differences are handled directly in each route.
 
-### Structure
+## Structure
 
-- `messages/`: JSON files with translations (`es.json`, `en.json`).
-- `src/i18n/`: `next-intl` configuration (`request.ts`, `navigation.ts`).
-- `src/middleware.ts`: Middleware for redirection and locale detection.
-- `app/[locale]/`: Dynamic routes based on language.
+- `app/page.jsx` — Spanish content.
+- `app/en/page.jsx` — English content.
 
-### Routes
+## Routes
 
-- `/es` (or `/` redirects to `/es` by default) serves content in Spanish.
+- `/` serves content in Spanish.
 - `/en` serves content in English.
