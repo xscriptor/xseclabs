@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import NavLink from "./navlink";
-import {useRouter, usePathname} from 'next/navigation';
+import { useRouter, usePathname } from "next/navigation";
 
 const linksEs = [
   { href: "/", title: "Inicio" },
@@ -25,41 +25,42 @@ const linksEn = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState<'light'|'dark'>('light');
+  const [theme, setTheme] = useState("light");
   const router = useRouter();
   const pathname = usePathname();
-  const inEnglish = pathname?.startsWith('/en');
+  const inEnglish = pathname?.startsWith("/en");
   const links = inEnglish ? linksEn : linksEs;
-  const switchLocale = (locale: 'es'|'en') => {
-    const current = pathname || '/';
-    if (locale === 'en') {
-      const target = current.startsWith('/en') ? current : (current === '/' ? '/en' : `/en${current}`);
+
+  const switchLocale = (locale) => {
+    const current = pathname || "/";
+    if (locale === "en") {
+      const target = current.startsWith("/en") ? current : current === "/" ? "/en" : `/en${current}`;
       router.replace(target);
     } else {
-      const target = current.startsWith('/en') ? (current.replace(/^\/en/, '') || '/') : current;
-      router.replace(target || '/');
+      const target = current.startsWith("/en") ? current.replace(/^\/en/, "") || "/" : current;
+      router.replace(target || "/");
     }
     setOpen(false);
   };
 
   useEffect(() => {
-    const stored = typeof window !== 'undefined' ? localStorage.getItem('theme') : null;
-    const prefersDark = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initial = stored === 'dark' ? 'dark' : stored === 'light' ? 'light' : (prefersDark ? 'dark' : 'light');
+    const stored = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
+    const prefersDark = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initial = stored === "dark" ? "dark" : stored === "light" ? "light" : prefersDark ? "dark" : "light";
     setTheme(initial);
-    if (typeof document !== 'undefined') {
-      document.documentElement.setAttribute('data-theme', initial);
+    if (typeof document !== "undefined") {
+      document.documentElement.setAttribute("data-theme", initial);
     }
   }, []);
 
   const toggleTheme = () => {
-    const next = theme === 'dark' ? 'light' : 'dark';
+    const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
-    if (typeof document !== 'undefined') {
-      document.documentElement.setAttribute('data-theme', next);
+    if (typeof document !== "undefined") {
+      document.documentElement.setAttribute("data-theme", next);
     }
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('theme', next);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("theme", next);
     }
   };
 
@@ -69,19 +70,11 @@ export default function Navbar() {
         <div className="mx-auto flex h-12 max-w-5xl items-center justify-between px-4">
           <div className="text-sm font-semibold">xSecLabs</div>
           <div className="flex items-center gap-2">
-            <button
-              aria-label="Menu"
-              className="rounded-md border px-3 py-1"
-              onClick={() => setOpen((v) => !v)}
-            >
-              {inEnglish ? 'Language' : 'Idioma'}
+            <button aria-label="Menu" className="rounded-md border px-3 py-1" onClick={() => setOpen((v) => !v)}>
+              {inEnglish ? "Language" : "Idioma"}
             </button>
-            <button
-              aria-label={inEnglish ? 'Theme' : 'Tema'}
-              className="p-2"
-              onClick={toggleTheme}
-            >
-              {theme === 'dark' ? (
+            <button aria-label={inEnglish ? "Theme" : "Tema"} className="p-2" onClick={toggleTheme}>
+              {theme === "dark" ? (
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="4" />
                   <line x1="12" y1="1" x2="12" y2="3" />
@@ -108,8 +101,8 @@ export default function Navbar() {
                 <NavLink key={l.href} href={l.href} title={l.title} onClick={() => setOpen(false)} />
               ))}
               <div className="mt-2 flex gap-2">
-                <button className="p-2 text-sm" onClick={() => switchLocale(inEnglish ? 'es' : 'en')}>
-                  {inEnglish ? 'Esp' : 'Eng'}
+                <button className="p-2 text-sm" onClick={() => switchLocale(inEnglish ? "es" : "en")}>
+                  {inEnglish ? "Esp" : "Eng"}
                 </button>
               </div>
             </nav>
@@ -123,8 +116,8 @@ export default function Navbar() {
             <NavLink key={l.href} href={l.href} title={l.title} />
           ))}
           <div className="ml-2 flex gap-2">
-            <button className="p-2" onClick={toggleTheme} aria-label={inEnglish ? 'Theme' : 'Tema'}>
-              {theme === 'dark' ? (
+            <button className="p-2" onClick={toggleTheme} aria-label={inEnglish ? "Theme" : "Tema"}>
+              {theme === "dark" ? (
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="4" />
                   <line x1="12" y1="1" x2="12" y2="3" />
@@ -142,8 +135,8 @@ export default function Navbar() {
                 </svg>
               )}
             </button>
-            <button className="p-2 text-sm" onClick={() => switchLocale(inEnglish ? 'es' : 'en')}>
-              {inEnglish ? 'Esp' : 'Eng'}
+            <button className="p-2 text-sm" onClick={() => switchLocale(inEnglish ? "es" : "en")}>
+              {inEnglish ? "Esp" : "Eng"}
             </button>
           </div>
         </nav>
