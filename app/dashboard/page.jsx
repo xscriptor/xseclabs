@@ -1,9 +1,8 @@
-export default function DashboardEn() {
+export default function DashboardPage() {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold">Dashboard</h1>
-      <p>Reusable base panel.</p>
+      <p className="text-gray-600">Panel base reutilizable.</p>
     </div>
   );
 }
-
