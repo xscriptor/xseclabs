@@ -1,6 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
 import NavLink from "./navlink";
+import LoginIcon from "./icons/LoginIcon";
+import PanelIcon from "./icons/PanelIcon";
+import LogbookIcon from "./icons/LogbookIcon";
+import LabsIcon from "./icons/LabsIcon";
+import ToolsIcon from "./icons/ToolsIcon";
+import NotesIcon from "./icons/NotesIcon";
+import ProjectsIcon from "./icons/ProjectsIcon";
+import SettingsIcon from "./icons/SettingsIcon";
+import HomeIcon from "./icons/HomeIcon";
 import { useRouter, usePathname } from "next/navigation";
 
 const linksEs = [
@@ -146,7 +155,25 @@ export default function Navbar() {
           <div className="px-4 pb-4">
             <nav className="flex flex-col gap-1">
               {links.map((l) => (
-                <NavLink key={l.href} href={l.href} title={l.title} onClick={() => setOpen(false)} />
+                <NavLink key={l.href} href={l.href} onClick={() => setOpen(false)}>
+                  {l.href.endsWith("/panel") || l.href === "/panel" ? (
+                    <PanelIcon />
+                  ) : l.href.endsWith("/bitacora") || l.href.endsWith("/logbook") ? (
+                    <LogbookIcon />
+                  ) : l.href.endsWith("/laboratorios") || l.href.endsWith("/labs") ? (
+                    <LabsIcon />
+                  ) : l.href.endsWith("/herramientas") || l.href.endsWith("/tools") ? (
+                    <ToolsIcon />
+                  ) : l.href.endsWith("/apuntes") || l.href.endsWith("/notes") ? (
+                    <NotesIcon />
+                  ) : l.href.endsWith("/proyectos") || l.href.endsWith("/projects") ? (
+                    <ProjectsIcon />
+                  ) : l.href.endsWith("/ajustes") || l.href.endsWith("/settings") ? (
+                    <SettingsIcon />
+                  ) : (
+                    <HomeIcon />
+                  )}
+                </NavLink>
               ))}
               <div className="mt-2 flex gap-2">
                 <button className="p-2 text-sm" onClick={() => switchLocale(inEnglish ? "es" : "en")}>
@@ -161,7 +188,25 @@ export default function Navbar() {
       <div className="hidden md:flex fixed bottom-4 left-1/2 z-40 -translate-x-1/2">
         <nav className="flex items-center gap-2 rounded-full border border-black/10 bg-[var(--surface)] px-3 py-2 shadow-lg">
           {links.map((l) => (
-            <NavLink key={l.href} href={l.href} title={l.title} />
+            <NavLink key={l.href} href={l.href}>
+              {l.href.endsWith("/panel") || l.href === "/panel" ? (
+                <PanelIcon />
+              ) : l.href.endsWith("/bitacora") || l.href.endsWith("/logbook") ? (
+                <LogbookIcon />
+              ) : l.href.endsWith("/laboratorios") || l.href.endsWith("/labs") ? (
+                <LabsIcon />
+              ) : l.href.endsWith("/herramientas") || l.href.endsWith("/tools") ? (
+                <ToolsIcon />
+              ) : l.href.endsWith("/apuntes") || l.href.endsWith("/notes") ? (
+                <NotesIcon />
+              ) : l.href.endsWith("/proyectos") || l.href.endsWith("/projects") ? (
+                <ProjectsIcon />
+              ) : l.href.endsWith("/ajustes") || l.href.endsWith("/settings") ? (
+                <SettingsIcon />
+              ) : (
+                <HomeIcon />
+              )}
+            </NavLink>
           ))}
           <div className="ml-2 flex gap-2">
             <button className="p-2" onClick={toggleTheme} aria-label={inEnglish ? "Theme" : "Tema"}>
