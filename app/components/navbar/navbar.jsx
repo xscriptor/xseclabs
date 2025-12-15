@@ -156,7 +156,7 @@ export default function Navbar() {
             <nav className="flex flex-col gap-1">
               {links.map((l) => (
                 <NavLink key={l.href} href={l.href} onClick={() => setOpen(false)}>
-                  {l.href.endsWith("/panel") || l.href === "/panel" ? (
+                  {l.href.endsWith("/panel") || l.href === "/panel" || l.href.endsWith("/dashboard") ? (
                     <PanelIcon />
                   ) : l.href.endsWith("/bitacora") || l.href.endsWith("/logbook") ? (
                     <LogbookIcon />
@@ -189,7 +189,7 @@ export default function Navbar() {
         <nav className="flex items-center gap-2 rounded-full border border-black/10 bg-[var(--surface)] px-3 py-2 shadow-lg">
           {links.map((l) => (
             <NavLink key={l.href} href={l.href}>
-              {l.href.endsWith("/panel") || l.href === "/panel" ? (
+              {l.href.endsWith("/panel") || l.href === "/panel" || l.href.endsWith("/dashboard") ? (
                 <PanelIcon />
               ) : l.href.endsWith("/bitacora") || l.href.endsWith("/logbook") ? (
                 <LogbookIcon />
