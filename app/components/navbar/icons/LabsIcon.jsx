@@ -1,8 +1,24 @@
 export default function LabsIcon({ size = 18 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M6 3l5 9v9H6a5 5 0 0 1 0-10h7" />
-      <path d="M11 3h7l-5 9" />
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M8 4h8" />
+      <path d="M10 4v4" />
+      <path d="M14 4v4" />
+      <path d="M10 8L6 17" />
+      <path d="M14 8L18 17" />
+      <path d="M6 17h12" />
+      <path d="M7.8 15.6c2-2 6 1.5 8.4-.6" />
+      <circle cx="12" cy="3" r="1" />
+      <circle cx="12" cy="5" r="0.7" />
     </svg>
   );
 }
