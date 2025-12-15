@@ -4,22 +4,24 @@ import NavLink from "./navlink";
 import { useRouter, usePathname } from "next/navigation";
 
 const linksEs = [
-  { href: "/", title: "Inicio" },
-  { href: "/auth", title: "Sesión" },
-  { href: "/dashboard", title: "Panel" },
-  { href: "/files", title: "Archivos" },
-  { href: "/versions", title: "Versiones" },
-  { href: "/activity", title: "Actividad" },
-  { href: "/settings", title: "Ajustes" },
+  { href: "/", title: "Login" },
+  { href: "/panel", title: "Panel" },
+  { href: "/bitacora", title: "Bitácora" },
+  { href: "/laboratorios", title: "Laboratorios" },
+  { href: "/herramientas", title: "Herramientas" },
+  { href: "/apuntes", title: "Apuntes" },
+  { href: "/proyectos", title: "Proyectos" },
+  { href: "/ajustes", title: "Ajustes" },
 ];
 
 const linksEn = [
-  { href: "/en", title: "Home" },
-  { href: "/en/auth", title: "Auth" },
+  { href: "/en", title: "Login" },
   { href: "/en/dashboard", title: "Dashboard" },
-  { href: "/en/files", title: "Files" },
-  { href: "/en/versions", title: "Versions" },
-  { href: "/en/activity", title: "Activity" },
+  { href: "/en/logbook", title: "Logbook" },
+  { href: "/en/labs", title: "Labs" },
+  { href: "/en/tools", title: "Tools" },
+  { href: "/en/notes", title: "Notes" },
+  { href: "/en/projects", title: "Projects" },
   { href: "/en/settings", title: "Settings" },
 ];
 
@@ -33,12 +35,58 @@ export default function Navbar() {
 
   const switchLocale = (locale) => {
     const current = pathname || "/";
+    const esToEn = {
+      "": "",
+      panel: "dashboard",
+      bitacora: "logbook",
+      laboratorios: "labs",
+      herramientas: "tools",
+      apuntes: "notes",
+      proyectos: "projects",
+      ajustes: "settings",
+      sesion: "auth",
+      actividad: "activity",
+      versiones: "versions",
+    };
+    const enToEs = {
+      "": "",
+      dashboard: "panel",
+      logbook: "bitacora",
+      labs: "laboratorios",
+      tools: "herramientas",
+      notes: "apuntes",
+      projects: "proyectos",
+      settings: "ajustes",
+      auth: "sesion",
+      activity: "actividad",
+      versions: "versiones",
+    };
     if (locale === "en") {
-      const target = current.startsWith("/en") ? current : current === "/" ? "/en" : `/en${current}`;
-      router.replace(target);
+      if (current === "/") {
+        router.replace("/en");
+      } else if (current.startsWith("/en")) {
+        router.replace(current);
+      } else {
+        const parts = current.split("/").filter(Boolean);
+        const first = parts[0] || "";
+        const mapped = esToEn[first] ?? first;
+        const rest = parts.slice(1).join("/");
+        const target = `/en${mapped ? `/${mapped}` : ""}${rest ? `/${rest}` : ""}`;
+        router.replace(target);
+      }
     } else {
-      const target = current.startsWith("/en") ? current.replace(/^\/en/, "") || "/" : current;
-      router.replace(target || "/");
+      if (current === "/en" || current === "/en/") {
+        router.replace("/");
+      } else if (current.startsWith("/en")) {
+        const parts = current.replace(/^\/en\/?/, "").split("/").filter(Boolean);
+        const first = parts[0] || "";
+        const mapped = enToEs[first] ?? first;
+        const rest = parts.slice(1).join("/");
+        const target = `/${mapped}${rest ? `/${rest}` : ""}` || "/";
+        router.replace(target);
+      } else {
+        router.replace(current || "/");
+      }
     }
     setOpen(false);
   };

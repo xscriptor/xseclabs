@@ -2,25 +2,17 @@
 import { useState, useCallback } from "react";
 import { api } from "../lib/api";
 
-export type ActivityItem = {
-  id: string;
-  user_id: string;
-  action: string;
-  module: string;
-  entity_id?: string;
-  created_at?: string;
-};
-
 export function useActivity() {
-  const [items, setItems] = useState<ActivityItem[]>([]);
+  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
-  const fetchActivity = useCallback(async (): Promise<void> => {
+  const fetchActivity = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const data = await api.get<ActivityItem[]>("/activity");
+      /** @type {import('../lib/types').ActivityItem[]} */
+      const data = await api.get("/activity");
       setItems(data);
     } catch (e) {
       const message = e instanceof Error ? e.message : "Error";

@@ -3,9 +3,11 @@ import { useState, useCallback } from "react";
 import { getToken, setToken, clearToken } from "../lib/auth";
 
 export function useAuth() {
-  const [token, setTokenState] = useState<string | null>(() => getToken());
+  /** @type {import('../lib/types').AuthState} */
+  const initial = { token: getToken(), authenticated: !!getToken() };
+  const [token, setTokenState] = useState(initial.token);
 
-  const login = useCallback((t: string) => {
+  const login = useCallback((t) => {
     setToken(t);
     setTokenState(t);
   }, []);

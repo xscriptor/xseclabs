@@ -2,25 +2,18 @@
 import { useState, useCallback } from "react";
 import { api } from "../lib/api";
 
-export type EntityVersion = {
-  id: string;
-  entity_id: string;
-  version_number: number;
-  file_path?: string;
-  created_at?: string;
-};
-
-export function useVersions(entityId?: string) {
-  const [versions, setVersions] = useState<EntityVersion[]>([]);
+export function useVersions(entityId) {
+  const [versions, setVersions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
-  const fetchVersions = useCallback(async (): Promise<void> => {
+  const fetchVersions = useCallback(async () => {
     if (!entityId) return;
     setLoading(true);
     setError(null);
     try {
-      const data = await api.get<EntityVersion[]>(`/entities/${entityId}/versions`);
+      /** @type {import('../lib/types').EntityVersion[]} */
+      const data = await api.get(`/entities/${entityId}/versions`);
       setVersions(data);
     } catch (e) {
       const message = e instanceof Error ? e.message : "Error";

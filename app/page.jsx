@@ -1,17 +1,19 @@
-import ModuleCard from "./components/ModuleCard";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="p-6">
-      <h1 className="mb-4 text-2xl font-bold">xSecLabs</h1>
-      <p className="mb-6 text-gray-700">Plataforma segura y modular</p>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <ModuleCard href="/auth" title="Auth" description="Módulo común de sesión" />
-        <ModuleCard href="/dashboard" title="Dashboard" description="Panel base reutilizable" />
-        <ModuleCard href="/files" title="Files" description="Contenidos y configuración" />
-        <ModuleCard href="/versions" title="Versions" description="Versionado de entidades" />
-        <ModuleCard href="/activity" title="Activity" description="Registro universal" />
-        <ModuleCard href="/settings" title="Settings" description="Configuración global" />
+      <h1 className="mb-4 text-2xl font-bold">Login</h1>
+      <p className="mb-6 text-gray-700">
+        Accede para usar la bitácora privada de ciberseguridad.
+      </p>
+      <div className="mt-4 flex gap-3">
+        <Link href="/panel" className="rounded bg-black px-3 py-2 text-white">
+          Ir al panel
+        </Link>
+        <Link href="/ajustes" className="rounded border px-3 py-2">
+          Configuración
+        </Link>
       </div>
     </div>
   );
