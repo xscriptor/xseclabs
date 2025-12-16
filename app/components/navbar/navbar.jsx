@@ -155,7 +155,7 @@ export default function Navbar() {
           <div className="px-4 pb-4">
             <nav className="flex flex-col gap-1">
               {links.map((l) => (
-                <NavLink key={l.href} href={l.href} onClick={() => setOpen(false)} ariaLabel={l.title}>
+                <NavLink key={l.href} href={l.href} onClick={() => setOpen(false)} ariaLabel={l.title} label={l.title}>
                   {l.href.endsWith("/panel") || l.href === "/panel" || l.href.endsWith("/dashboard") ? (
                     <PanelIcon />
                   ) : l.href.endsWith("/bitacora") || l.href.endsWith("/logbook") ? (
@@ -188,7 +188,7 @@ export default function Navbar() {
       <div className="hidden md:flex fixed bottom-4 left-1/2 z-40 -translate-x-1/2">
         <nav className="flex items-center gap-2 rounded-full border border-black/10 bg-[var(--surface)] px-3 py-2 shadow-lg">
           {links.map((l) => (
-            <NavLink key={l.href} href={l.href} ariaLabel={l.title}>
+            <NavLink key={l.href} href={l.href} ariaLabel={l.title} label={l.title}>
               {l.href.endsWith("/panel") || l.href === "/panel" || l.href.endsWith("/dashboard") ? (
                 <PanelIcon />
               ) : l.href.endsWith("/bitacora") || l.href.endsWith("/logbook") ? (
