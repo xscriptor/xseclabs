@@ -5,10 +5,11 @@ export default function LabsIcon({ size = 18 }) {
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
+      stroke="var(--purple)"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className="transition-transform duration-150 ease-out group-hover:scale-200"
     >
       <path d="M8 4h8" />
       <path d="M10 4v4" />
